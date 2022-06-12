@@ -1,0 +1,13 @@
+@import url('../node_modules/@fortawesome/fontawesome-free/css/all.min.css');
+
+
+body{
+  margin: none;
+  padding: none;
+}
+
+.div{
+  margin-top: 0;
+  padding: 2% 0;
+  min-height: 100vh;
+}
