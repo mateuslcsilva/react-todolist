@@ -1,3 +1,7 @@
+.div{
+   background-color: rgba(53, 53, 70, 0.418);
+}
+
 .input-titulo::placeholder{
    color: blue;
 }

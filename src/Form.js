@@ -1,29 +1,29 @@
 
 import React from 'react';
-import {useState} from 'react'
-import {Input, Spacer, Dropdown, Row, Textarea} from '@nextui-org/react';
+import { useState } from 'react'
+import { Input, Spacer, Dropdown, Row, Textarea } from '@nextui-org/react';
 import './Form.css'
 import ToDoList from './ToDoList'
+import DoneList from './DoneList';
 
 const Form = () => {
-  let toDoItemsArray = []
 
+  let toDoItemsArray = []
+  let doneItemsArray = []
   const InitialSelectedValue = 'Prioridade'
   const initialInputValue = ''
 
   const [selected, setSelected] = React.useState(new Set([InitialSelectedValue]));
   const [selectedColor, setSelectedColor] = React.useState(new Set(['primary']))
   const [toDoItems, setToDoItems] = React.useState([...toDoItemsArray])
+  const [doneItems, setDoneItems] = React.useState([...doneItemsArray])
   const [inputTittleValue, setInputTittleValue] = useState(initialInputValue)
   const [inputTextValue, setInputTextValue] = useState(initialInputValue)
-
-
 
   const selectedValue = React.useMemo(
     () => Array.from(selected).join(", ").replaceAll("_", " "),
     [selected]
   );
-
 
   const selectedButtonColor = (selectedValue, bootstrap) => {
     switch (selectedValue) {
@@ -38,13 +38,12 @@ const Form = () => {
     }
   }
 
-
   const toDoItem = (e) => {
     e.preventDefault()
 
-    if(selectedValue == 'Prioridade') return
-    if(!inputTittleValue) return
-    if(!inputTextValue) return
+    if (selectedValue == 'Prioridade' || !inputTittleValue || !inputTextValue) return alert('Preencha todos os campos.')
+
+
     let item = {
       titulo: inputTittleValue,
       descricao: inputTextValue,
@@ -53,9 +52,8 @@ const Form = () => {
     }
 
     toDoItems.push(item)
-
-    console.log(toDoItems)
     setToDoItems([...toDoItems])
+
     setInputTittleValue('')
     setInputTextValue('')
     setSelected([InitialSelectedValue])
@@ -66,11 +64,33 @@ const Form = () => {
     setToDoItems([...newArray])
   }
 
+  const getItem = (id) => {
+    let newArray = toDoItems.filter(item => item.id != id)
+    let selectedArray = toDoItems.filter(item => item.id = id)
+    setToDoItems([...newArray])
+    setInputTextValue(selectedArray[0].descricao)
+    setInputTittleValue(selectedArray[0].titulo)
+  }
+
+  const done = (id) => {
+    let newArray = toDoItems.filter(item => item.id != id)
+    let selectedArray = toDoItems.filter(item => item.id == id)
+    doneItems.push(selectedArray[0])
+    setToDoItems([...newArray])
+    setDoneItems([...doneItems])
+
+  }
+
+  const deleteDoneItem = (id) => {
+    let newArray = doneItems.filter(item => item.id != id)
+    setDoneItems([...newArray])
+  }
+
 
 
   return (
-    <div className='text-bg-secondary div'>
-      <div className='container container-lg pb-4 mt-2 border border-secondary rounded text-bg-light'>
+    <div className=' div'>
+      <div className='container container-lg pb-4 mt-2 border rounded text-bg-light shadow'>
         <Spacer y={1.5} />
         <Row justify='center'>
           <div className='me-4' css={{ me: '20%' }}>
@@ -87,8 +107,7 @@ const Form = () => {
               <Dropdown.Menu
                 aria-label="Static Actions"
                 variant="solid"
-                className='border rounded '
-                color='secondary'
+                className='border rounded text-bg-light'
                 disallowEmptySelection
                 selectionMode="single"
                 selectedKeys={selected}
@@ -134,7 +153,17 @@ const Form = () => {
           <button className='btn btn-outline-primary' onClick={toDoItem}>+ Tarefa</button>
         </Row>
       </div>
-      <ToDoList toDoItems={toDoItems} deleteToDoItem={deleteToDoItem} selectedButtonColor={selectedButtonColor} />
+      <ToDoList toDoItems={toDoItems}
+        deleteToDoItem={deleteToDoItem}
+        selectedButtonColor={selectedButtonColor}
+        getItem={getItem}
+        done={done}
+      />
+      <DoneList DoneItems={doneItems}
+        deleteToDoItem={deleteToDoItem}
+        selectedButtonColor={selectedButtonColor}
+        deleteDoneItem={deleteDoneItem}
+        />
     </div>
   )
 
