@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/react-todolist/static/css/main.992fd1c3.css",
-    "main.js": "/react-todolist/static/js/main.d3a1eca8.js",
+    "main.css": "/react-todolist/static/css/main.ce59a7f4.css",
+    "main.js": "/react-todolist/static/js/main.562711f8.js",
     "static/media/fa-solid-900.ttf": "/react-todolist/static/media/fa-solid-900.e615bbcb258550973c16.ttf",
     "static/media/fa-brands-400.ttf": "/react-todolist/static/media/fa-brands-400.b823fc0dbb5a5f0c21bb.ttf",
     "static/media/fa-solid-900.woff2": "/react-todolist/static/media/fa-solid-900.59edf72a325ac2048d60.woff2",
@@ -11,11 +11,11 @@
     "static/media/fa-v4compatibility.ttf": "/react-todolist/static/media/fa-v4compatibility.4baccb548138840fa33a.ttf",
     "static/media/fa-v4compatibility.woff2": "/react-todolist/static/media/fa-v4compatibility.afac89562a5301459069.woff2",
     "index.html": "/react-todolist/index.html",
-    "main.992fd1c3.css.map": "/react-todolist/static/css/main.992fd1c3.css.map",
-    "main.d3a1eca8.js.map": "/react-todolist/static/js/main.d3a1eca8.js.map"
+    "main.ce59a7f4.css.map": "/react-todolist/static/css/main.ce59a7f4.css.map",
+    "main.562711f8.js.map": "/react-todolist/static/js/main.562711f8.js.map"
   },
   "entrypoints": [
-    "static/css/main.992fd1c3.css",
-    "static/js/main.d3a1eca8.js"
+    "static/css/main.ce59a7f4.css",
+    "static/js/main.562711f8.js"
   ]
 }
